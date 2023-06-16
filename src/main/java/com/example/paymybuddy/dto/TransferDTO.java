@@ -1,4 +1,4 @@
-package dto;
+package com.example.paymybuddy.dto;
 
 import lombok.Data;
 
