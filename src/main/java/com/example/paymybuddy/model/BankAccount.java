@@ -1,7 +1,10 @@
 package com.example.paymybuddy.model;
 
-import jakarta.persistence.*;
+
 import lombok.Data;
+
+
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -22,5 +25,9 @@ public class BankAccount {
     public BankAccount (String iban, String bank) {
         this.iban = iban;
         this.bank = bank;
+    }
+
+    public BankAccount() {
+
     }
 }

@@ -1,12 +1,16 @@
 package com.example.paymybuddy.model;
 
-import jakarta.persistence.*;
-import lombok.Data;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -14,10 +18,8 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(nullable = false, unique = true)
     private String name;
-
     @ManyToMany(mappedBy = "roles")
     private List<User> users = new ArrayList<>();
 
@@ -25,7 +27,4 @@ public class Role {
         this.name = name;
     }
 
-    public Role() {
-
-    }
 }

@@ -1,9 +1,16 @@
 package com.example.paymybuddy.dto;
 
-import jakarta.validation.constraints.NotEmpty;
+//import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 @Data
-public class UserDTO {
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDto {
 
     private Long id;
 
@@ -11,20 +18,10 @@ public class UserDTO {
     private String name;
 
     @NotEmpty(message = "Entrer un email valide")
+    @Email
     private String email;
 
     @NotEmpty(message = "Entrer un mot de pass valide")
     private String password;
 
-  /*
-    public UserDTO(String email, String password){
-        this.email = email;
-        this.password = password;
-    }
-
-    public UserDTO() {
-
-    }
-
-   */
 }
