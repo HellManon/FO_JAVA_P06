@@ -1,22 +1,24 @@
 package com.example.paymybuddy.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "transaction")
+@Table(name = "transactions")
 public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "user_id", nullable = false)
-    private Long user;
 
     @Column(nullable = false)
     private int transaction_number;
@@ -28,15 +30,19 @@ public class Transaction {
     private String amount;
 
     @Column(nullable = false)
-    private Date date;
+    private LocalDate date;
 
     @Column(nullable = false)
-    private int buddy_id;
+    private Long buddy_id;
 
     @Column(nullable = false)
     private Boolean done;
 
-    public Transaction(int transaction_number, String description, String amount, Date date, int buddy_id, Boolean done) {
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public Transaction(int transaction_number, String description, String amount, LocalDate date, Long buddy_id, Boolean done) {
         this.transaction_number = transaction_number;
         this.description = description;
         this.amount = amount;

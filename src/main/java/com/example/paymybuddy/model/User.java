@@ -23,6 +23,13 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String bankBalance;
+
+    @OneToMany(mappedBy = "user")
+    private List<Transaction> transactions = new ArrayList<>();
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -31,11 +38,12 @@ public class User {
     )
     private List<Role> roles = new ArrayList<>();
 
-    public User(String name, String email, String password, List<Role> roles) {
+    public User(String name, String email, String password, List<Role> roles, List<Transaction> transactions) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.roles = roles;
+        this.transactions = transactions;
     }
 
 }

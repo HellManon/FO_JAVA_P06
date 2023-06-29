@@ -13,7 +13,6 @@ public class BankAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
     private Long id;
 
     @Column(nullable = false)
