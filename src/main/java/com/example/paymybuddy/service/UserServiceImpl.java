@@ -34,8 +34,7 @@ public class UserServiceImpl implements UserService {
         if (role == null)
             role = roleRepository.save(new Role(TbConstants.Roles.USER));
 
-        User user = new User(userDto.getName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()),
-                Arrays.asList(role));
+        User user = new User(userDto.getName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()), Arrays.asList(role));
         userRepository.save(user);
     }
 
