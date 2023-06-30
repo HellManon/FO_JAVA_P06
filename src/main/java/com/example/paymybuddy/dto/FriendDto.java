@@ -4,14 +4,15 @@ import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BankAccountDTO {
+public class FriendDto {
 
     private Long id;
 
-    private String iban;
+    private String name;
 
-    private String bank;
+    private String email;
 }

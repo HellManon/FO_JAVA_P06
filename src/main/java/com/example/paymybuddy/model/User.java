@@ -38,12 +38,21 @@ public class User {
     )
     private List<Role> roles = new ArrayList<>();
 
-    public User(String name, String email, String password, List<Role> roles, List<Transaction> transactions) {
+    @ManyToMany
+    @JoinTable(
+            name = "user_friends",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id")
+    )
+    private List<User> friends = new ArrayList<>();
+
+    public User(String name, String email, String password, List<Role> roles, List<Transaction> transactions, List<User> friends) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.roles = roles;
         this.transactions = transactions;
+        this.friends = friends;
     }
 
 }
