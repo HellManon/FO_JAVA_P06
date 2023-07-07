@@ -21,6 +21,10 @@ public class BankAccount {
     @Column(nullable = false)
     private String bank;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public BankAccount (String iban, String bank) {
         this.iban = iban;
         this.bank = bank;

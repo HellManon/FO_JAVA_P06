@@ -9,7 +9,7 @@ public interface TransactionService {
 
     void makePayment(TransactionDto transactionDto);
 
-    void transferToBankAccount(TransferDto transferDto);
+    void transferToBankAccount(TransactionDto transferDto);
 
     BankAccountDto getUserBankAccount(Long userId);
 }

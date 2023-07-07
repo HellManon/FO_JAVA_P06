@@ -27,7 +27,12 @@ public class User {
     @Column(nullable = false)
     private String bankBalance;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_transactions",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "transaction_id")}
+    )
     private List<Transaction> transactions = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -38,7 +43,7 @@ public class User {
     )
     private List<Role> roles = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_friends",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -46,13 +51,22 @@ public class User {
     )
     private List<User> friends = new ArrayList<>();
 
-    public User(String name, String email, String password, List<Role> roles, List<Transaction> transactions, List<User> friends) {
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_bankAccounts",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "bankAccount_id")
+    )
+    private List<BankAccount> bankAccounts = new ArrayList<>();
+
+    public User(String name, String email, String password, List<Role> roles, List<Transaction> transactions, List<User> friends, List<BankAccount> bankAccounts) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.roles = roles;
         this.transactions = transactions;
         this.friends = friends;
+        this.bankAccounts = bankAccounts;
     }
 
 }
