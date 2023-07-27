@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <title>Sign Up</title>
+</head>
+<body class="p-3 mb-2 bg-light text-black">
+    <div class="container justify-content-center w-25 p-3" style="margin-top: 5em; border-radius: 15px; border: 2px solid lightgray;">
+        <div class="form-group">
+            <label><a th:href="@{/login}">Back to Login</a></label>
+        </div>
+        <h1 class="text-center mt-3 mb-3">Sign Up</h1>
+        <form action="#" th:action="@{/signup}" method="POST">
+            <div class="alert alert-danger" th:if="${signupError}">
+                <span>Email already exists, please change another email.</span>
+            </div>
+            <div class="form-group">
+                <input type="input" name="userName" class="form-control" id="inputUsername" placeholder="&#xf007; &nbsp;&nbsp;Username" style="font-family:Arial, FontAwesome" maxlength="20" required>
+            </div>
+            <div class="form-group">
+                <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" class="form-control" id="inputEmail" placeholder="&#xf0e0; &nbsp;&nbsp;Email" style="font-family:Arial, FontAwesome" maxlength="30" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="&#xf069; &nbsp;&nbsp;Password" style="font-family:Arial, FontAwesome" maxlength="30" required>
+            </div>
+            <div class="form-group mt-4 mb-4">
+                <button id="submit-button" type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+
+    <title>Navbar</title>
+</head>
+<body>
+    <!-- nav bar -->
+    <div class="container pt-3" th:fragment="topbar">
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-start align-items-center">
+                <i class="fas fa-laptop-code fa-2x text-warning pb-3"></i>
+                <h5 class="btn btn-success" th:href="@{/home}">Pay My Buddy</h5>
+            </div>
+            <div class="col-md-6 pt-2">
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="text-black-50" th:text="${message}"></p>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="#" th:class="${active=='home.html'?'nav-link active':'text-secondary navigation-link pb-2'}" class="text-dark navigation-link pb-2" th:href="@{/home}">Home</a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="#" th:class="${active=='transfer.html'?'nav-link active':'text-secondary navigation-link pb-2'}" class="text-dark navigation-link pb-2" th:href="@{/transfer}">Transfer</a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="#" onclick="return false" th:class="${active=='profile.html'?'nav-link active':'text-secondary navigation-link pb-2'}" class="text-dark navigation-link pb-2" th:href="@{/profile}">Profile</a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="#" onclick="return false" th:class="${active=='contact.html'?'nav-link active':'text-secondary navigation-link pb-2'}" class="text-dark navigation-link pb-2" th:href="@{/contact}">Contact</a>
+                    </div>
+                    <div class="col-md-2">
+                        <form action="#" th:action="@{/logout}" method="POST">
+                            <button id="logout-btn" type="submit" class="btn btn-secondary">Logout</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+
+    <title>Transfer</title>
+</head>
+<body>
+    <div th:replace="~{/navbar::topbar}"></div>
+    <div id="transfer" class="container main-container">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover mt-3" id="transactionTable">
+                <thead>
+                <tr class="bg-success text-white">
+                    <th>Connection</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="transaction: ${transactionList}" >
+                    <td th:text="${transaction.getToAccount().getUser().getUserName()}">
+                        Connections</td>
+                    <td th:text="${transaction.getDescription()}">Description</td>
+                    <td th:text="${transaction.getAmount()+'€'}">Amount</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="list-inline text-xl-center mb-3 mt-3 blockquote" style="padding-right: 6rem;">
+                <div th:if="${transactionList.totalPages > 0}" class="list-inline-item p-0"
+                     th:each="pageNumber : ${pageNumbers}">
+                    <ul>
+                        <ol>
+                            <a th:href="@{/transfer(size=${transactionList.size}, page=${pageNumber})}"
+                               th:text=${pageNumber}
+                               th:class="${pageNumber==transactionList.number + 1} ? active"></a>
+                        </ol>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer class="mt-auto text-center">
+            <p>PayMyBuddy © 2021 - 2022</p>
+        </footer>
+    </div>
+</body>
+</html>
