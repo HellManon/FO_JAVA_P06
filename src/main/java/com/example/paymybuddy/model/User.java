@@ -21,13 +21,13 @@ public class User {
     private String name;
     @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String password;
 
     @Column(nullable = false)
     private String bankBalance;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_transactions",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -43,7 +43,7 @@ public class User {
     )
     private List<Role> roles = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_friends",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -51,7 +51,7 @@ public class User {
     )
     private List<User> friends = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_bankAccounts",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -59,14 +59,21 @@ public class User {
     )
     private List<BankAccount> bankAccounts = new ArrayList<>();
 
-    public User(String name, String email, String password, List<Role> roles, List<Transaction> transactions, List<User> friends, List<BankAccount> bankAccounts) {
+    public User(String name, String email, String password, String bankBalance, List<Role> roles, List<Transaction> transactions, List<User> friends, List<BankAccount> bankAccounts) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.bankBalance = bankBalance;
         this.roles = roles;
         this.transactions = transactions;
         this.friends = friends;
         this.bankAccounts = bankAccounts;
     }
 
+    public User(String name, String email, String password, List<Role> roles) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
 }

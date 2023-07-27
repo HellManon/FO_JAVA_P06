@@ -18,4 +18,6 @@ public class TransactionDto {
     private LocalDate date;
     private Long buddyId;
     private boolean done;
+    private Long userId;
+    private Long BankAccountId;
 }
